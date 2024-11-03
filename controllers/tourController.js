@@ -3,7 +3,7 @@ const fs = require('fs');
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
-
+//yaman
 exports.checkID = (req, res, next, val) => {
   console.log(`Tour id is: ${val}`);
 
