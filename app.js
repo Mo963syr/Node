@@ -12,18 +12,15 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
-
-
-
-const get_all_tour= (req, res) => {
+const get_all_tour = (req, res) => {
   res.status(200).json({
     status: 'success',
     results: tours.length,
     data: { tours },
   });
-}
+};
 
-const get_tour= (req, res) => {
+const get_tour = (req, res) => {
   console.log(req.params);
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
@@ -37,9 +34,9 @@ const get_tour= (req, res) => {
     status: 'success',
     data: { tour },
   });
-}
+};
 
-const update_tour=(req, res) => {
+const update_tour = (req, res) => {
   // console.log(req.params);
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
@@ -51,26 +48,25 @@ const update_tour=(req, res) => {
   }
   res.status(200).json({
     status: 'success',
-    data: { tour:'<updated tour here....>' },
+    data: { tour: '<updated tour here....>' },
   });
-}
+};
 
-const delete_tour= (req, res) => {
+const delete_tour = (req, res) => {
   // console.log(req.params);
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
   if (!tour) {
-    return res.status(404
-    ).json({
+    return res.status(404).json({
       status: 'fail',
       message: 'invalid id are you stupid',
     });
   }
   res.status(204).json({
-    data:null
+    data: null,
   });
-}
-const create_tour= (req, res) => {
+};
+const create_tour = (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
   const newTours = Object.assign({ id: newId }, req.body);
 
@@ -86,12 +82,18 @@ const create_tour= (req, res) => {
       });
     }
   );
-}
+};
 // GET route
 
-app.route('/api/v1/tours').get(get_all_tour).post(update_tour)
-app.route('/api/v1/tours/:id').get(get_tour).patch(update_tour).delete(delete_tour)
-
+app
+  .route('/api/v1/tours')
+  .get(get_all_tour)
+  .post(update_tour);
+app
+  .route('/api/v1/tours/:id')
+  .get(get_tour)
+  .patch(update_tour)
+  .delete(delete_tour);
 
 // Start the server
 const port = 3000;
