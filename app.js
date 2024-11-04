@@ -92,7 +92,7 @@ const create_tour = (req, res) => {
     }
   );
 };
-// GET routeeeeeeeeeeeeeeeee
+// GET routeeeeeeeeeeeeeeee
 //fuckkk
 app
   .route('/api/v1/tours')
