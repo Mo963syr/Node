@@ -92,24 +92,6 @@ const create_tour = (req, res) => {
     }
   );
 };
-{
-  {
-    {
-      {
-        {
-          {
-            {
-              {
-                {
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 // GET routttttttttt
 //jghkgjkhghjkg
 app
