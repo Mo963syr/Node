@@ -83,8 +83,8 @@ const create_tour = (req, res) => {
     }
   );
 };
-// GET route
-
+// GET rout
+//jghkgjkhghjkg
 app
   .route('/api/v1/tours')
   .get(get_all_tour)
