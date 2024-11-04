@@ -1,12 +1,20 @@
 const express = require('express');
 // const morgan = require('morgan');
 const fs = require('fs');
-
+const morgan = require('morgan');
 const app = express();
 
 // Middleware
 app.use(express.json()); // Call as a function
-
+app.use(morgan('dev'));
+app.use((req, res, next) => {
+  console.log('hello first midleware');
+  next();
+});
+app.use((req, res, next) => {
+  req.requestTimee = new Date().toISOString();
+  next();
+});
 // Read tours data
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
@@ -15,6 +23,7 @@ const tours = JSON.parse(
 const get_all_tour = (req, res) => {
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTimee,
     results: tours.length,
     data: { tours },
   });
@@ -84,7 +93,7 @@ const create_tour = (req, res) => {
   );
 };
 // GET route
-
+//fuck
 app
   .route('/api/v1/tours')
   .get(get_all_tour)
